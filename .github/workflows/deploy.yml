@@ -27,13 +27,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build app for Netlify
-        if: ${{ inputs.deploy-netlify }}
+      - name: Build app
         run: yarn build
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
-        if: ${{ inputs.deploy-netlify }}
+        if: ${{ github.event.inputs.deploy-netlify }}
         with:
           publish-dir: './dist'
           production-branch: master
@@ -42,33 +41,24 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+        timeout-minutes: 5
 
-      - name: Install Vercel CLI
-        if: ${{ inputs.deploy-vercel }}
-        run: yarn global add vercel@canary
-
-      - name: Pull Vercel Environment Information
-        if: ${{ inputs.deploy-vercel }}
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build Project Artifacts
-        if: ${{ inputs.deploy-vercel }}
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        if: ${{ inputs.deploy-vercel }}
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel
+        if: ${{ github.event.inputs.deploy-vercel }}
+        uses: vercel/actions@v5
+        with:
+          token: ${{ secrets.VERCEL_TOKEN }}
+          prebuilt: true
 
       - name: Deployment Summary
         run: |
           echo "Deployment summary:"
-          if [[ "${{ inputs.deploy-netlify }}" == "true" ]]; then
+          if ${{ github.event.inputs.deploy-netlify }}; then
             echo "✅ Deployed to Netlify"
           else
             echo "❌ Netlify deployment skipped"
           fi
-          if [[ "${{ inputs.deploy-vercel }}" == "true" ]]; then
+          if ${{ github.event.inputs.deploy-vercel }}; then
             echo "✅ Deployed to Vercel"
           else
             echo "❌ Vercel deployment skipped"
