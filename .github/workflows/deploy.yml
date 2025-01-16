@@ -42,6 +42,8 @@ jobs:
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy from GitHub Actions'
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Install Vercel CLI
         if: ${{ inputs.deploy-vercel }}
