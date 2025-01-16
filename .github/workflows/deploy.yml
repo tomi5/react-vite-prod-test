@@ -40,15 +40,16 @@ jobs:
           deploy-message: 'Deploy from GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
         timeout-minutes: 5
 
       - name: Deploy to Vercel
         if: ${{ github.event.inputs.deploy-vercel }}
-        uses: vercel/actions@v5
+        uses: amondnet/vercel-action@v25
         with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          prebuilt: true
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deployment Summary
         run: |
