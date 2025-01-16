@@ -53,3 +53,17 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deployment Summary
+        run: |
+          echo "Deployment summary:"
+          if [[ "${{ inputs.deploy-netlify }}" == "true" ]]; then
+            echo "✅ Deployed to Netlify"
+          else
+            echo "❌ Netlify deployment skipped"
+          fi
+          if [[ "${{ inputs.deploy-vercel }}" == "true" ]]; then
+            echo "✅ Deployed to Vercel"
+          else
+            echo "❌ Vercel deployment skipped"
+          fi
