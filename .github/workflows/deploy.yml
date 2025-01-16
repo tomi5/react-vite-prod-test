@@ -2,6 +2,15 @@ name: Deploy on Netlify and Vercel
 
 on:
   workflow_dispatch:
+    inputs:
+      deploy-netlify:
+        type: boolean
+        description: Enable Netlify deployment
+        default: true
+      deploy-vercel:
+        type: boolean
+        description: Enable Vercel deployment
+        default: true
 
 jobs:
   deploy:
@@ -23,6 +32,7 @@ jobs:
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
+        if: ${{ inputs.deploy-netlify }}
         with:
           publish-dir: './dist'
           production-branch: master
@@ -35,3 +45,11 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        if: ${{ inputs.deploy-vercel }}
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
