@@ -16,7 +16,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Greeting
         run: echo "Brawo! Znakomita robota!" >> $GITHUB_STEP_SUMMARY
