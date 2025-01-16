@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ArticleDetails > should display article details 1`] = `
+<div>
+  <div
+    class="max-w-3xl mx-auto px-4"
+  >
+    <a
+      class="text-blue-600 hover:text-blue-800 mb-6 inline-block"
+      href="/articles"
+    >
+      ← Powrót do artykułów
+    </a>
+    <article
+      class="bg-white rounded-lg shadow-md p-8"
+    >
+      <h1
+        class="text-4xl font-bold mb-4"
+      >
+        Test Article
+      </h1>
+      <div
+        class="prose max-w-none"
+      >
+        <p
+          class="mb-4"
+        >
+          Test content
+        </p>
+      </div>
+    </article>
+  </div>
+</div>
+`;
+
+exports[`ArticleDetails > should display error message for non-existent article 1`] = `
+<div>
+  <div
+    class="text-center py-8"
+  >
+    Ładowanie artykułu...
+  </div>
+</div>
+`;
+
+exports[`ArticleDetails > should match snapshot while loading 1`] = `
+<div>
+  <div
+    class="text-center py-8"
+  >
+    Ładowanie artykułu...
+  </div>
+</div>
+`;

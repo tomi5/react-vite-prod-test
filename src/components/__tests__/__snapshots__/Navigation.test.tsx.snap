@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navigation > should have correct links 1`] = `
+<div>
+  <nav
+    class="bg-white shadow-md"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4"
+    >
+      <ul
+        class="flex space-x-8 py-4"
+      >
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/about"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/articles"
+          >
+            Artykuły
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;
+
+exports[`Navigation > should render all navigation links 1`] = `
+<div>
+  <nav
+    class="bg-white shadow-md"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4"
+    >
+      <ul
+        class="flex space-x-8 py-4"
+      >
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/about"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-gray-600 hover:text-blue-600 font-medium"
+            href="/articles"
+          >
+            Artykuły
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;
