@@ -76,7 +76,7 @@ describe('ArticleDetails', () => {
 
   it('should match snapshot while loading', () => {
     vi.mocked(articleService.articleService.getArticleById).mockImplementation(
-      () => new Promise(() => {}), // never resolving promise to keep loading state
+      () => new Promise<undefined>(() => {}), // never resolving promise to keep loading state
     );
 
     const { container } = renderWithProviders(<ArticleDetails />);
