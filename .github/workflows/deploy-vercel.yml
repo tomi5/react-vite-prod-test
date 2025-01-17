@@ -1,0 +1,25 @@
+name: Deploy Vercel
+
+on:
+  workflow_call:
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  deploy-vercel:
+    needs: ci
+    environment:
+      name: 'Staging'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy app to Vercel Production env
+        uses: './.github/actions/deploy-vercel'
+        with:
+          mode: 'production'
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

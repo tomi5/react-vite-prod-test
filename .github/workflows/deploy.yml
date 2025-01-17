@@ -1,74 +1,16 @@
-name: Deploy
+name: Deploy on push
+
 on:
-  workflow_dispatch:
-    inputs:
-      deploy-netlify:
-        type: boolean
-        description: Enable Netlify deployment
-        default: true
-      deploy-vercel:
-        type: boolean
-        description: Enable Vercel deployment
-        default: true
+  push:
+    branches:
+      - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  deploy-netlify:
+    uses: ./.github/workflows/deploy-netlify.yml
+    secrets: inherit
 
-      - name: Configure node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Run unit tests
-        run: yarn test run
-
-      - name: Build app
-        run: yarn build
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        if: ${{ github.event.inputs.deploy-netlify }}
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy from GitHub Actions'
-          enable-commit-comment: false
-          enable-commit-status: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
-        timeout-minutes: 5
-
-      - name: Deploy to Vercel
-        if: ${{ github.event.inputs.deploy-vercel }}
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          production: true
-          github-comment: false
-          github-deployment: false
-
-      - name: Deployment Summary
-        run: |
-          echo "Deployment summary:"
-          if ${{ github.event.inputs.deploy-netlify }}; then
-            echo "✅ Deployed to Netlify"
-          else
-            echo "❌ Netlify deployment skipped"
-          fi
-          if ${{ github.event.inputs.deploy-vercel }}; then
-            echo "✅ Deployed to Vercel"
-          else
-            echo "❌ Vercel deployment skipped"
-          fi
+  deploy-vercel:
+    needs: deploy-netlify
+    uses: ./.github/workflows/deploy-vercel.yml
+    secrets: inherit
