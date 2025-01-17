@@ -35,7 +35,7 @@ const ArticleDetails: React.FC = () => {
       <Link to="/articles" className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
         ← Powrót do artykułów
       </Link>
-      <article className="bg-white rounded-lg shadow-md p-8">
+      <article className="bg-white rounded-lg shadow-md p-8" data-testid="article-details">
         <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
         <div className="prose max-w-none">
           {article.body.split('\n').map((paragraph, index) => (

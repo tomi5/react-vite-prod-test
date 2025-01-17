@@ -13,6 +13,7 @@ exports[`ArticleDetails > should display article details 1`] = `
     </a>
     <article
       class="bg-white rounded-lg shadow-md p-8"
+      data-testid="article-details"
     >
       <h1
         class="text-4xl font-bold mb-4"
