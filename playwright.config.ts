@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -17,6 +19,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
+    headless: false,
     baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
     trace: 'on-first-retry',
   },
