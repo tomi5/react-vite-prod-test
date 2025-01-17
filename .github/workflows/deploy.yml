@@ -38,7 +38,7 @@ jobs:
         if: ${{ github.event.inputs.deploy-netlify }}
         with:
           publish-dir: './dist'
-          production-branch: master
+          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy from GitHub Actions'
           enable-commit-comment: false

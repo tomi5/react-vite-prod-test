@@ -9,7 +9,8 @@
     "lint": "eslint src",
     "test": "vitest",
     "test:e2e": "npx playwright install && playwright test",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,7 +18,9 @@
     "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
+    "@eslint/js": "9.18.0",
     "@playwright/test": "^1.49.1",
+    "@rollup/rollup-darwin-x64": "latest",
     "@tanstack/react-query": "5.64.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "6.6.3",
@@ -38,6 +41,7 @@
     "eslint-plugin-react": "7.37.4",
     "eslint-plugin-react-hooks": "5.1.0",
     "glob": "11.0.1",
+    "globals": "15.14.0",
     "jsdom": "22.1.0",
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
@@ -46,8 +50,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "~5.7.3",
     "vite": "^6.0.7",
-    "vitest": "0.34.6",
-    "@rollup/rollup-darwin-x64": "latest"
+    "vitest": "0.34.6"
   },
   "license": "MIT"
 }

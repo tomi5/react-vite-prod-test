@@ -20,6 +20,7 @@ export const articleService = {
       const { data } = await axios.get<Article>(`${API_URL}/posts/${id}`);
       return data;
     } catch (error) {
+      console.warn(error);
       return undefined;
     }
   },
