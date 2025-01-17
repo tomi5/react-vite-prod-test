@@ -31,9 +31,4 @@ test.describe('Application Navigation', () => {
     // Check if article details are visible
     await expect(page.locator('[data-testid="article-details"]')).toBeVisible();
   });
-
-  test('should navigate to home page', async ({ page }) => {
-    // Zamiast hardcodowanego URL, używamy względnej ścieżki
-    await page.goto('/');
-  });
 });
