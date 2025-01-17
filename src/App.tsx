@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Articles from './pages/Articles';
 import ArticleDetails from './pages/ArticleDetails';
+import { TechnicalInfo } from './components/TechnicalInfo';
 import './App.css';
 
 const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ function App() {
               <Route path="/articles/:id" element={<ArticleDetails />} />
             </Routes>
           </main>
+          <TechnicalInfo />
         </div>
       </Router>
     </QueryClientProvider>
