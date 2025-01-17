@@ -7,6 +7,7 @@ const Home: React.FC = () => {
       <p className="text-lg text-gray-600 leading-relaxed">
         Witaj na stronie głównej naszej aplikacji!
       </p>
+      <p className="text-lg text-gray-600 leading-relaxed">Sprawdzam działanie PRów</p>
     </div>
   );
 };
