@@ -6,17 +6,23 @@ on:
       - main
 
 jobs:
-  ci:
-    uses: ./.github/workflows/ci.yml
-
-  preview:
-    needs: ci
+  pr-check:
     environment:
       name: 'Preview'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: './github/actions/setup-project'
+
+      - name: Lint code
+        run: yarn lint
+
+      - name: Run unit tests
+        run: yarn test
 
       - name: Deploy app to Vercel Preview env
         uses: ./.github/actions/deploy-vercel
