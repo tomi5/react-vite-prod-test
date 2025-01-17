@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure node
-        uses: './github/actions/setup-project/action.yml'
+      - name: Setup Project
+        uses: ./.github/actions/setup-project
 
       - name: Lint code
         run: yarn lint
@@ -26,7 +26,7 @@ jobs:
         run: yarn build
 
       - name: Deploy app to Vercel Production env
-        uses: './.github/actions/deploy-vercel/action.yml'
+        uses: ./.github/actions/deploy-vercel
         with:
           mode: 'production'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}

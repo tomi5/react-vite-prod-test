@@ -8,7 +8,9 @@ const Home: React.FC = () => {
         Witaj na stronie głównej naszej aplikacji!
       </p>
       <p className="text-lg text-gray-600 leading-relaxed">Sprawdzam działanie PRów</p>
-      <p className="text-lg text-gray-600 leading-relaxed">Should block merge</p>
+      <p className="text-lg text-gray-600 leading-relaxed">
+        Should block merge without pull request
+      </p>
     </div>
   );
 };
